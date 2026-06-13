@@ -1,0 +1,22 @@
+Insurance Claim Compliance Rules
+
+Rule 1:
+Customer ID must be present.
+
+Rule 2:
+Policy Number must be present.
+
+Rule 3:
+Claim Date must be present.
+
+Rule 4:
+Customer Signature must be present.
+
+Rule 5:
+Claims above ₹100000 require Manager Approval.
+
+Rule 6:
+Supporting Documents must be attached.
+
+Rule 7:
+Claim Amount must be clearly mentioned.

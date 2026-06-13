@@ -1,0 +1,13 @@
+Insurance Claim Form
+
+Customer ID: C12345
+
+Policy Number: P98765
+
+Claim Amount: 150000
+
+Claim Date: 13-06-2026
+
+Reason:
+Vehicle accident damage
+
