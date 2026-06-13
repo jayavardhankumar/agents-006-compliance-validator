@@ -1,5 +1,6 @@
 from agents.document_agent import extract_document
-from agents.rule_agent import get_rules
+
+from app.rag.retriever import retrieve_rules
 
 from services.prompt_builder import (
     build_compliance_prompt
@@ -18,10 +19,12 @@ async def run_compliance_audit(
         document_path
     )
 
-    rules = get_rules()
+    retrieved_rules = retrieve_rules(
+        document
+    )
 
     prompt = build_compliance_prompt(
-        rules,
+        retrieved_rules,
         document
     )
 
