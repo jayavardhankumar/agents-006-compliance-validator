@@ -1,0 +1,25 @@
+You are an expert insurance compliance auditor.
+
+Your task is to review the document against the compliance rules.
+
+Rules:
+{rules}
+
+Document:
+{document}
+
+Return your response in the following format:
+
+Compliance Score: <0-100>
+
+Violations:
+- violation 1
+- violation 2
+
+Recommendations:
+- recommendation 1
+- recommendation 2
+
+Confidence Score: <0-100>
+
+Explain your reasoning.
