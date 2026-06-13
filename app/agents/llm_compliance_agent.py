@@ -1,23 +1,29 @@
-from pathlib import Path
+from pydantic_ai import Agent
+from pydantic_ai.models.openai import OpenAIModel
+from pydantic_ai.providers.openai import OpenAIProvider
+
+from config import (
+    AMD_BASE_URL,
+    AMD_API_KEY,
+    MODEL_NAME
+)
 
 
-def load_rules():
+provider = OpenAIProvider(
+    base_url=AMD_BASE_URL,
+    api_key=AMD_API_KEY
+)
 
-    with open(
-        "data/rules/insurance_compliance_rules.txt",
-        "r",
-        encoding="utf-8"
-    ) as f:
+model = OpenAIModel(
+    MODEL_NAME,
+    provider=provider
+)
 
-        return f.read()
+agent = Agent(model=model)
 
 
-def load_document():
+async def audit_document(prompt):
 
-    with open(
-        "data/sample_documents/sample_claim.txt",
-        "r",
-        encoding="utf-8"
-    ) as f:
+    result = await agent.run(prompt)
 
-        return f.read()
+    return result.output

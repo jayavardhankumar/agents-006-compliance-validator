@@ -1,8 +1,16 @@
+import asyncio
+
 from services.document_loader import read_file
-from services.prompt_builder import build_compliance_prompt
+from services.prompt_builder import (
+    build_compliance_prompt
+)
+
+from agents.llm_compliance_agent import (
+    audit_document
+)
 
 
-def main():
+async def main():
 
     rules = read_file(
         "data/rules/insurance_compliance_rules.txt"
@@ -17,8 +25,12 @@ def main():
         document
     )
 
-    print(prompt)
+    response = await audit_document(
+        prompt
+    )
+
+    print(response)
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
