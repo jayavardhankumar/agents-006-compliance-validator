@@ -1,8 +1,7 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 
 
-@dataclass
-class AuditReport:
+class AuditReport(BaseModel):
 
     compliance_score: int
 
@@ -10,8 +9,8 @@ class AuditReport:
 
     risk_level: str
 
-    violations: list
+    violations: list[str]
 
-    recommendations: list
+    recommendations: list[str]
 
     confidence_score: int

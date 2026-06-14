@@ -1,28 +1,28 @@
-def calculate_risk(
-    violations,
-    claim_amount=0
-):
+def calculate_risk(document):
 
     score = 0
 
-    score += len(violations) * 20
+    text = document.lower()
 
-    if claim_amount > 100000:
+    if "signature" not in text:
+        score += 30
+
+    if "manager approval" not in text:
+        score += 30
+
+    if "supporting document" not in text:
         score += 20
 
-    if score <= 20:
-        risk = "LOW"
+    if score >= 60:
+        level = "HIGH"
 
-    elif score <= 50:
-        risk = "MEDIUM"
-
-    elif score <= 80:
-        risk = "HIGH"
+    elif score >= 30:
+        level = "MEDIUM"
 
     else:
-        risk = "CRITICAL"
+        level = "LOW"
 
     return {
-        "risk_level": risk,
-        "risk_score": min(score, 100)
+        "risk_score": score,
+        "risk_level": level
     }
