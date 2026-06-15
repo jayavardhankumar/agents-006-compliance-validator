@@ -2,25 +2,50 @@ from app.models.audit_report import AuditReport
 
 
 def create_report(
-    retrieved_rules,
-    risk_result,
-    violations
+    ai_result,
+    retrieved_rules
 ):
 
-    compliance_score = max(
-        0,
-        100 - (len(violations) * 20)
-    )
-
     return AuditReport(
-        compliance_score=compliance_score,
-        risk_score=risk_result["risk_score"],
-        risk_level=risk_result["risk_level"],
+        summary=ai_result.get(
+            "summary",
+            ""
+        ),
+
+        compliance_score=ai_result.get(
+            "compliance_score",
+            0
+        ),
+
+        risk_score=ai_result.get(
+            "risk_score",
+            0
+        ),
+
+        risk_level=ai_result.get(
+            "risk_level",
+            "UNKNOWN"
+        ),
+
+        risk_reasoning=ai_result.get(
+            "risk_reasoning",
+            ""
+        ),
+
         retrieved_rules=retrieved_rules,
-        violations=violations,
-        recommendations=[
-            "Fix all violations",
-            "Re-run compliance audit"
-        ],
-        confidence_score=85
+
+        violations=ai_result.get(
+            "violations",
+            []
+        ),
+
+        recommendations=ai_result.get(
+            "recommendations",
+            []
+        ),
+
+        confidence_score=ai_result.get(
+            "confidence_score",
+            0
+        )
     )
