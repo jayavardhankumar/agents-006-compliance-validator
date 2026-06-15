@@ -9,6 +9,8 @@ class AuditReport(BaseModel):
 
     risk_level: str
 
+    retrieved_rules: list[str]
+
     violations: list[str]
 
     recommendations: list[str]

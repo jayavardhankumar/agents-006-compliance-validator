@@ -1,7 +1,11 @@
 import asyncio
 
-from agents.compliance_orchestrator import (
+from app.agents.compliance_orchestrator import (
     run_compliance_audit
+)
+
+from app.services.report_generator import (
+    generate_report
 )
 
 
@@ -11,7 +15,13 @@ async def main():
         "data/sample_documents/sample_claim.txt"
     )
 
-    print(report)
+    formatted_report = generate_report(
+        report
+    )
+
+    print(
+        formatted_report
+    )
 
 
 if __name__ == "__main__":

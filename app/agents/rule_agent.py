@@ -1,10 +1,24 @@
-from services.document_loader import read_file
+def detect_violations(document):
 
+    violations = []
 
-def get_rules():
+    if "Customer Signature" not in document:
+        violations.append(
+            "Missing Customer Signature"
+        )
 
-    rules = read_file(
-        "data/rules/insurance_compliance_rules.txt"
-    )
+    if (
+        "Claim Amount" in document
+        and "150000" in document
+        and "Manager Approval" not in document
+    ):
+        violations.append(
+            "Missing Manager Approval"
+        )
 
-    return rules
+    if "Customer ID" not in document:
+        violations.append(
+            "Missing Customer ID"
+        )
+
+    return violations

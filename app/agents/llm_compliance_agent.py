@@ -2,7 +2,7 @@ from pydantic_ai import Agent
 from pydantic_ai.models.openai import OpenAIModel
 from pydantic_ai.providers.openai import OpenAIProvider
 
-from config import (
+from app.config import (
     AMD_BASE_URL,
     AMD_API_KEY,
     MODEL_NAME

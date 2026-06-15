@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.env
+.claude/
+uploads/
+audit_report.txt
+audit_history.json

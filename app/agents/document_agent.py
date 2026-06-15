@@ -1,6 +1,5 @@
-from services.document_loader import read_file
-from services.pdf_loader import extract_pdf_text
-
+from app.services.document_loader import read_file
+from app.services.pdf_loader import extract_pdf_text
 
 def extract_document(document_path):
 

@@ -1,35 +1,43 @@
-from agents.document_agent import extract_document
+from app.agents.document_agent import extract_document
+from app.agents.rule_agent import detect_violations
+from app.agents.risk_agent import calculate_risk
+from app.agents.report_agent import create_report
 
 from app.rag.retriever import retrieve_rules
 
-from services.prompt_builder import (
-    build_compliance_prompt
-)
 
-from agents.llm_compliance_agent import (
-    audit_document
-)
+async def run_compliance_audit(document_path):
 
-
-async def run_compliance_audit(
-    document_path
-):
+    print("STEP 1: Loading document")
 
     document = extract_document(
         document_path
     )
 
+    print("STEP 2: Retrieving rules")
+
     retrieved_rules = retrieve_rules(
         document
     )
 
-    prompt = build_compliance_prompt(
-        retrieved_rules,
+    print("STEP 3: Calculating risk")
+
+    risk_result = calculate_risk(
         document
     )
 
-    response = await audit_document(
-        prompt
+    print("STEP 4: Detecting violations")
+
+    violations = detect_violations(
+        document
     )
 
-    return response
+    print("STEP 5: Creating report")
+
+    report = create_report(
+        retrieved_rules,
+        risk_result,
+        violations
+    )
+
+    return report.model_dump()
